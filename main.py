@@ -32,7 +32,8 @@ print("失踪率：", df_f["失踪の有無"].mean())
 y = df_f["失踪の有無"]
 
 #説明変数
-suuji_features = ["入国時年齢", "失踪までの在日日数"]
+#suuji_features = ["入国時年齢", "失踪までの在日日数"]
+suuji_features = ["入国時年齢"]
 categori_features = ["性別", "職種関係", "職種", "所在地(実習先)(都道府県)", "学校所属" ,"組合"]
 sf = suuji_features
 cf = categori_features
@@ -41,7 +42,7 @@ X = df_f[sf + cf].copy()
 
 # 欠損値補完
 X["入国時年齢"] = X["入国時年齢"].fillna(X["入国時年齢"].median())
-X["失踪までの在日日数"] = X["失踪までの在日日数"].fillna(0)
+#X["失踪までの在日日数"] = X["失踪までの在日日数"].fillna(0)
 for col in cf:
     X[col] = X[col].astype("string").fillna("N/A")
 
