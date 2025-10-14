@@ -17,7 +17,7 @@ cf = [c for c in X.columns if c not in sf]
 
 # 学習用とテスト用
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.3, random_state=42, stratify=y
+    X, y, test_size=0.3, random_state=40, stratify=y
 )
 
 # 前処理
