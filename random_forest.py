@@ -49,7 +49,6 @@ print(classification_report(y_train, y_pred_train, digits=3))
 print("混同行列（訓練データ）:\n", confusion_matrix(y_train, y_pred_train))
 print("AUC（訓練データ）:", roc_auc_score(y_train, y_prob_train))
 
-# === テストデータでの評価 ===
 y_pred_test = rf_clf.predict(X_test)
 y_prob_test = rf_clf.predict_proba(X_test)[:, 1]
 
