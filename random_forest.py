@@ -12,11 +12,11 @@ df = pd.read_csv("clean.csv")
 y = df["失踪の有無"].astype(int)
 X = df.drop(columns=["失踪の有無"])
 
-#sf = ["入国時年齢", "失踪までの在日日数"]
+# 数値列とカテゴリ列
 sf = [c for c in ["入国時年齢"] if c in X.columns]
 cf = [c for c in X.columns if c not in sf]
 
-# 学習用とテスト用
+# データ分割（層化抽出）
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.3, random_state=40, stratify=y
 )
@@ -27,7 +27,7 @@ preprocess = ColumnTransformer([
     ("cat", OneHotEncoder(handle_unknown="ignore"), cf)
 ])
 
-# ランダムフォレスト
+# ランダムフォレストモデル
 rf_clf = Pipeline([
     ("prep", preprocess),
     ("clf", RandomForestClassifier(
@@ -41,23 +41,30 @@ rf_clf = Pipeline([
 # 学習
 rf_clf.fit(X_train, y_train)
 
-# 予測
-y_pred = rf_clf.predict(X_test)
-y_prob = rf_clf.predict_proba(X_test)[:, 1]
+y_pred_train = rf_clf.predict(X_train)
+y_prob_train = rf_clf.predict_proba(X_train)[:, 1]
 
-# 評価
-print("\nランダムフォレスト")
-print(classification_report(y_test, y_pred, digits=3))
-print("混同行列:\n", confusion_matrix(y_test, y_pred))
-print("AUC:", roc_auc_score(y_test, y_prob))
+print("\n訓練データ果")
+print(classification_report(y_train, y_pred_train, digits=3))
+print("混同行列（訓練データ）:\n", confusion_matrix(y_train, y_pred_train))
+print("AUC（訓練データ）:", roc_auc_score(y_train, y_prob_train))
 
-# 重要度
-feature_names = sf + list(
-    rf_clf.named_steps["prep"].named_transformers_["cat"].get_feature_names_out(cf)
-)
-importances = rf_clf.named_steps["clf"].feature_importances_
-feat_imp = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)
+# === テストデータでの評価 ===
+y_pred_test = rf_clf.predict(X_test)
+y_prob_test = rf_clf.predict_proba(X_test)[:, 1]
 
-print("\n特徴量重要度:")
-for name, score in feat_imp[:10]:
-    print(f"{name}: {score:.4f}")
+print("\nテストデータ結果")
+print(classification_report(y_test, y_pred_test, digits=3))
+print("混同行列（テストデータ）:\n", confusion_matrix(y_test, y_pred_test))
+print("AUC（テストデータ）:", roc_auc_score(y_test, y_prob_test))
+
+# 特徴量重要度
+#feature_names = sf + list(
+#    rf_clf.named_steps["prep"].named_transformers_["cat"].get_feature_names_out(cf)
+#)
+#importances = rf_clf.named_steps["clf"].feature_importances_
+#feat_imp = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)
+#
+#print("\n=== 全特徴量の重要度 ===")
+#for name, score in feat_imp:
+#    print(f"{name}: {score:.4f}")

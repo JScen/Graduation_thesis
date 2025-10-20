@@ -1,14 +1,13 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.linear_model import LogisticRegression
+from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 
 # データ読み込み
 df = pd.read_csv("clean.csv")
-
 y = df["失踪の有無"].astype(int)
 X = df.drop(columns=["失踪の有無"])
 
@@ -22,48 +21,46 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 # 前処理
 preprocess = ColumnTransformer([
-    ("num", StandardScaler(), sf),
+    ("num", "passthrough", sf),
     ("cat", OneHotEncoder(handle_unknown="ignore"), cf)
 ])
 
-# ロジスティック回帰モデル
-log_clf = Pipeline([
+# 決定木モデル
+dt_clf = Pipeline([
     ("prep", preprocess),
-    ("clf", LogisticRegression(
-        max_iter=2000,
+    ("clf", DecisionTreeClassifier(
+        criterion="gini",
+        max_depth=None,
         class_weight="balanced",
-        solver="lbfgs"
+        random_state=42
     ))
 ])
 
 # 学習
-log_clf.fit(X_train, y_train)
+dt_clf.fit(X_train, y_train)
 
-y_pred_train = log_clf.predict(X_train)
-y_prob_train = log_clf.predict_proba(X_train)[:, 1]
+y_pred_train = dt_clf.predict(X_train)
+y_prob_train = dt_clf.predict_proba(X_train)[:, 1]
 
 print("\n訓練データ結果")
 print(classification_report(y_train, y_pred_train, digits=3))
 print("混同行列（訓練データ）:\n", confusion_matrix(y_train, y_pred_train))
 print("AUC（訓練データ）:", roc_auc_score(y_train, y_prob_train))
 
-y_pred_test = log_clf.predict(X_test)
-y_prob_test = log_clf.predict_proba(X_test)[:, 1]
+y_pred_test = dt_clf.predict(X_test)
+y_prob_test = dt_clf.predict_proba(X_test)[:, 1]
 
 print("\nテストデータ結果")
 print(classification_report(y_test, y_pred_test, digits=3))
 print("混同行列（テストデータ）:\n", confusion_matrix(y_test, y_pred_test))
 print("AUC（テストデータ）:", roc_auc_score(y_test, y_prob_test))
 
-#ohe = log_clf.named_steps["prep"].named_transformers_["cat"]
-#cat_names = list(ohe.get_feature_names_out(cf)) if len(cf) else []
-#feature_names = sf + cat_names
-#coef = log_clf.named_steps["clf"].coef_[0]
+#feature_names = sf + list(
+#    dt_clf.named_steps["prep"].named_transformers_["cat"].get_feature_names_out(cf)
+#)
+#importances = dt_clf.named_steps["clf"].feature_importances_
+#feat_imp = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)
 
-#coef_df = pd.DataFrame({
-#    "特徴量": feature_names,
-#    "係数": coef
-#}).sort_values("係数", ascending=False)
-
-#print("\n全特徴量の係数（上位・下位）")
-#print(coef_df.to_string(index=False))
+#print("\n特徴量の重要度")
+#for name, score in feat_imp:
+#    print(f"{name}: {score:.4f}")
