@@ -31,7 +31,6 @@ dt_clf = Pipeline([
     ("clf", DecisionTreeClassifier(
         criterion="gini",
         max_depth=None,
-        class_weight="balanced",
         random_state=42
     ))
 ])
