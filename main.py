@@ -33,7 +33,8 @@ y = df_f["失踪の有無"]
 #説明変数
 #suuji_features = ["入国時年齢", "失踪までの在日日数"]
 suuji_features = ["入国時年齢"]
-categori_features = ["性別", "職種関係", "職種", "所在地(実習先)(都道府県)", "学校所属" ,"組合"]
+categori_features = ["性別", "職種関係", "職種", "所在地(実習先)(都道府県)", "所在地(実習先)(市区町村)",
+                     "派遣会社", "学校所属", "組合", "所属機関"]
 sf = suuji_features
 cf = categori_features
 
