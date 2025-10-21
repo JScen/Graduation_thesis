@@ -32,7 +32,6 @@ log_clf = Pipeline([
     ("clf", LogisticRegression(
         max_iter=2000,
         class_weight="balanced",
-        solver="lbfgs"
     ))
 ])
 
