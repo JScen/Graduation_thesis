@@ -55,6 +55,28 @@ print(classification_report(y_test, y_pred_test, digits=3))
 print("混同行列（テストデータ）:\n", confusion_matrix(y_test, y_pred_test))
 print("AUC（テストデータ）:", roc_auc_score(y_test, y_prob_test))
 
+from sklearn.model_selection import LeaveOneOut, cross_val_predict
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+
+loo = LeaveOneOut()
+
+y_pred_loo = cross_val_predict(dt_clf, X, y, cv=loo, n_jobs=-1)
+y_prob_loo = cross_val_predict(dt_clf, X, y, cv=loo, method="predict_proba", n_jobs=-1)[:, 1]
+
+print("\nLOOCV(tree)")
+print(classification_report(y, y_pred_loo, digits=3))
+
+cm = confusion_matrix(y, y_pred_loo, labels=[0,1])
+tn, fp, fn, tp = cm.ravel()
+sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+
+print("混同行列（LOOCV）:\n", cm)
+print(f"Sensitivity（感度）: {sensitivity:.3f}")
+print(f"Specificity（特異度）: {specificity:.3f}")
+
+print("ROC-AUC（LOOCV, pooled）:", roc_auc_score(y, y_prob_loo))
+
 #feature_names = sf + list(
 #    dt_clf.named_steps["prep"].named_transformers_["cat"].get_feature_names_out(cf)
 #)
