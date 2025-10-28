@@ -57,35 +57,39 @@ print(classification_report(y_test, y_pred_test, digits=3))
 print("混同行列（テストデータ）:\n", confusion_matrix(y_test, y_pred_test))
 print("AUC（テストデータ）:", roc_auc_score(y_test, y_prob_test))
 
-from sklearn.model_selection import LeaveOneOut, cross_val_predict
-from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
-
-loo = LeaveOneOut()
-
-y_pred_loo = cross_val_predict(rf_clf, X, y, cv=loo, n_jobs=-1)
-y_prob_loo = cross_val_predict(rf_clf, X, y, cv=loo, method="predict_proba", n_jobs=-1)[:, 1]
-
-print("\nLOOCV(rf)")
-print(classification_report(y, y_pred_loo, digits=3))
-
-cm = confusion_matrix(y, y_pred_loo, labels=[0,1])
-tn, fp, fn, tp = cm.ravel()
-sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0.0
-specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
-
-print("混同行列（LOOCV）:\n", cm)
-print(f"Sensitivity（感度）: {sensitivity:.3f}")
-print(f"Specificity（特異度）: {specificity:.3f}")
-
-print("ROC-AUC（LOOCV, pooled）:", roc_auc_score(y, y_prob_loo))
+# from sklearn.model_selection import LeaveOneOut, cross_val_predict
+# from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+#
+# loo = LeaveOneOut()
+#
+# y_pred_loo = cross_val_predict(rf_clf, X, y, cv=loo, n_jobs=-1)
+# y_prob_loo = cross_val_predict(rf_clf, X, y, cv=loo, method="predict_proba", n_jobs=-1)[:, 1]
+#
+# print("\nLOOCV(rf)")
+# print(classification_report(y, y_pred_loo, digits=3))
+#
+# cm = confusion_matrix(y, y_pred_loo, labels=[0,1])
+# tn, fp, fn, tp = cm.ravel()
+# sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+# specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+#
+# print("混同行列（LOOCV）:\n", cm)
+# print(f"Sensitivity（感度）: {sensitivity:.3f}")
+# print(f"Specificity（特異度）: {specificity:.3f}")
+#
+# print("ROC-AUC（LOOCV, pooled）:", roc_auc_score(y, y_prob_loo))
 
 # 特徴量重要度
-#feature_names = sf + list(
-#    rf_clf.named_steps["prep"].named_transformers_["cat"].get_feature_names_out(cf)
-#)
-#importances = rf_clf.named_steps["clf"].feature_importances_
-#feat_imp = sorted(zip(feature_names, importances), key=lambda x: x[1], reverse=True)
-#
-#print("\n=== 全特徴量の重要度 ===")
-#for name, score in feat_imp:
-#    print(f"{name}: {score:.4f}")
+ohe = rf_clf.named_steps["prep"].named_transformers_["cat"]
+cat_names = list(ohe.get_feature_names_out(cf)) if len(cf) else []
+feature_names = sf + cat_names
+
+importances = rf_clf.named_steps["clf"].feature_importances_
+
+feat_imp_df = pd.DataFrame({
+    "特徴量": feature_names,
+    "重要度": importances
+}).sort_values("重要度", ascending=False)
+
+feat_imp_df.to_csv("random_forest.csv", index=False, encoding="utf-8-sig")
+print("\n重要度を保存しました")
