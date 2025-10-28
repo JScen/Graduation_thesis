@@ -40,8 +40,15 @@ svm_clf.fit(X_train, y_train)
 y_pred = svm_clf.predict(X_test)
 y_prob = svm_clf.predict_proba(X_test)[:, 1]
 
-# 評価
-print("\nSVM")
+y_pred_train = svm_clf.predict(X_train)
+y_prob_train = svm_clf.predict_proba(X_train)[:, 1]
+
+print("\nSVM_train")
+print(classification_report(y_train, y_pred_train, digits=3))
+print("混同行列（訓練データ）:\n", confusion_matrix(y_train, y_pred_train))
+print("AUC（訓練データ）:", roc_auc_score(y_train, y_prob_train))
+
+print("\nSVM_test")
 print(classification_report(y_test, y_pred, digits=3))
 print("混同行列:\n", confusion_matrix(y_test, y_pred))
 print("AUC:", roc_auc_score(y_test, y_prob))

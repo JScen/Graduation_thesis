@@ -2,12 +2,16 @@ import pandas as pd
 
 df = pd.read_csv("clean.csv")
 
-# 仅查看类别型字段（object、string类型）
+pd.set_option("display.max_rows", None)
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 2000)
+
+
 cat_cols = df.select_dtypes(include=["object", "string"]).columns
 
 for col in cat_cols:
     print(f"\n--- {col} ---")
-    print(df[col].value_counts().head(10))
+    print(df[col].value_counts())
     print(f"合計カテゴリ数: {df[col].nunique()}")
 
 counts = {}
