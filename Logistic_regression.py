@@ -76,15 +76,19 @@ print("AUC（テストデータ）:", roc_auc_score(y_test, y_prob_test))
 #
 # print("ROC-AUC（LOOCV, pooled）:", roc_auc_score(y, y_prob_loo))
 
-#ohe = log_clf.named_steps["prep"].named_transformers_["cat"]
-#cat_names = list(ohe.get_feature_names_out(cf)) if len(cf) else []
-#feature_names = sf + cat_names
-#coef = log_clf.named_steps["clf"].coef_[0]
+ohe = log_clf.named_steps["prep"].named_transformers_["cat"]
+cat_names = list(ohe.get_feature_names_out(cf)) if len(cf) else []
+feature_names = sf + cat_names
+coef = log_clf.named_steps["clf"].coef_[0]
 
-#coef_df = pd.DataFrame({
-#    "特徴量": feature_names,
-#    "係数": coef
-#}).sort_values("係数", ascending=False)
+coef_df = pd.DataFrame({
+    "特徴量": feature_names,
+    "係数": coef
+}).sort_values("係数", ascending=False)
 
-#print("\n全特徴量の係数（上位・下位）")
-#print(coef_df.to_string(index=False))
+print("\n特徴量の係数")
+print(coef_df.to_string(index=False))
+
+# === CSVに保存 ===
+coef_df.to_csv("logistic_regression.csv", index=False, encoding="utf-8-sig")
+print("\n係数保存しました")

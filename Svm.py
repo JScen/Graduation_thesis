@@ -53,6 +53,13 @@ print(classification_report(y_test, y_pred, digits=3))
 print("混同行列:\n", confusion_matrix(y_test, y_pred))
 print("AUC:", roc_auc_score(y_test, y_prob))
 
+pred_df = X_test.copy()
+pred_df["予測結果"] = y_pred
+pred_df["失踪数値"] = y_prob
+
+pred_df.to_csv("svmkakuritu_test.csv", index=False, encoding="utf-8-sig")
+print("\nsvmkakuritu_testを保存しました")
+
 clf_inner = svm_clf.named_steps["clf"]
 ohe = svm_clf.named_steps["prep"].named_transformers_["cat"]
 cat_names = list(ohe.get_feature_names_out(cf)) if len(cf) else []
