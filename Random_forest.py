@@ -44,7 +44,7 @@ rf_clf.fit(X_train, y_train)
 y_pred_train = rf_clf.predict(X_train)
 y_prob_train = rf_clf.predict_proba(X_train)[:, 1]
 
-print("\n訓練データ果")
+print("\n訓練データ結果")
 print(classification_report(y_train, y_pred_train, digits=3))
 print("混同行列（訓練データ）:\n", confusion_matrix(y_train, y_pred_train))
 print("AUC（訓練データ）:", roc_auc_score(y_train, y_prob_train))
@@ -93,3 +93,4 @@ feat_imp_df = pd.DataFrame({
 
 feat_imp_df.to_csv("random_forest.csv", index=False, encoding="utf-8-sig")
 print("\n重要度を保存しました")
+

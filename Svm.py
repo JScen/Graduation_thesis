@@ -21,10 +21,10 @@ preprocess = ColumnTransformer([
 svm_clf = Pipeline([
     ("prep", preprocess),
     ("clf", SVC(
-        kernel="linear",          # 線形SVM（ロジスティック回帰に近い）
-        C=1.0,                    # 正則化パラメータ
-        class_weight="balanced",  # 不均衡データ対応
-        probability=True,         # 確率出力を有効化（AUC計算に必要）
+        kernel="linear",
+        C=1.0,
+        class_weight="balanced",
+        probability=True,
         random_state=42
     ))
 ])
@@ -75,3 +75,39 @@ coef_df = pd.DataFrame({
 
 coef_df.to_csv("svm.csv", index=False, encoding="utf-8-sig")
 print("\n結果を保存しました")
+
+from sklearn.model_selection import LeaveOneOut, cross_val_predict
+from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
+import numpy as np
+import pandas as pd
+
+loo = LeaveOneOut()
+
+y_pred_loo = cross_val_predict(svm_clf, X, y, cv=loo, n_jobs=-1)
+
+y_prob_loo = cross_val_predict(svm_clf, X, y, cv=loo, method="predict_proba", n_jobs=-1)[:, 1]
+
+print("\nLOOCV")
+print(classification_report(y, y_pred_loo, digits=3))
+
+cm = confusion_matrix(y, y_pred_loo, labels=[0, 1])
+tn, fp, fn, tp = cm.ravel()
+print("混同行列（LOOCV）:\n", cm)
+
+sensitivity = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+specificity = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+print(f"Sensitivity（感度）: {sensitivity:.3f}")
+print(f"Specificity（特異度）: {specificity:.3f}")
+
+auc_loo = roc_auc_score(y, y_prob_loo)
+print("ROC-AUC（LOOCV, pooled）:", auc_loo)
+
+result_df = X.copy()
+result_df["実際(失踪の有無)"] = y
+result_df["予測(LOOCV)"] = y_pred_loo
+result_df["失踪確率(LOOCV)"] = y_prob_loo
+
+fn_df = result_df[(result_df["実際(失踪の有無)"] == 1) & (result_df["予測(LOOCV)"] == 0)]
+
+fn_df.to_csv("LOOCV_FN_Svm.csv", index=False, encoding="utf-8-sig")
+print("偽陰性一覧を 'LOOCV_FN_Svm.csv' に保存しました。")

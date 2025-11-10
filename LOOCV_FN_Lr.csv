@@ -1,0 +1,42 @@
+﻿入国時年齢,性別,職種関係,職種,所在地(実習先)(都道府県),所在地(実習先)(市区町村),派遣会社,学校所属,組合,所属機関,実際(失踪の有無),予測(LOOCV)
+25.0,男,食品製造関係,加熱性水産加工食品製造業,宮城県,塩竈市,"M.H.E CO.,LTD",マンダレー校,JOP協同組合,"HIGH WIN INTERNATIONAL CO.,LTD",1,0
+26.0,女,食品製造関係,食鳥処理加工業,宮城県,角田市,"M.H.E CO.,LTD",ヤンゴン学校,JOP協同組合,AUNG THAIN KHA NGAR PON,1,0
+24.0,男,その他,工業包装,福井県,福井市,"M.H.E CO.,LTD",マンダレー校,日中ネットワークサービス協同組合,SMART SPACE CONSTRUCTION COMPANY LIMITED,1,0
+19.0,女,食品製造関係,水産練り製品製造,岡山県,総社市,"SUT ZAI CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+26.0,男,建設関係,とび,東京都,新宿区,"SUT ZAI CO.,LTD",ミッチーナー学校,一般社団法人日中科学技術文化センター,MAY KINN SAN COMPANY LIMITED,1,0
+27.0,男,その他,コンクリート製品製造,福岡県,大刀洗町,"SUT ZAI CO.,LTD",ヤンゴン学校,一般社団法人日中科学技術文化センター,MAY KINN SAN COMPANY LIMITED,1,0
+27.0,女,食品製造関係,そう菜製造業,宮城県,仙台市,"SUT ZAI CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,女,食品製造関係,そう菜製造業,兵庫県,姫路市,"SUT ZAI CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,仙台市,"SUT ZAI CO.,LTD",ヤンゴン学校,宮城県農水産サービス振興協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+23.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,塩竈市,"SUT ZAI CO.,LTD",ヤンゴン学校,宮城県農水産サービス振興協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+26.0,女,その他,介護,福岡県,北九州市,"SUT ZAI CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+22.0,男,その他,ビルクリーニング,福岡県,福岡市,"MOE YAN GENERAL SERVICES CO.,LTD",ヤンゴン学校,エフ・アドバンス経済協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,男,建設関係,とび,神奈川県,相模原市,"MOE YAN GENERAL SERVICES CO.,LTD",ヤンゴン学校,エフ・アドバンス経済協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+25.0,男,その他,工業包装,大分県,由布市,"MOE YAN GENERAL SERVICES CO.,LTD",ヤンゴン学校,エフ・アドバンス経済協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+22.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,石巻市,"SUT ZAI CO.,LTD",MK日本語学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+22.0,女,機械・金属関係,電子機器組立て,鳥取県,米子市,"SUT ZAI CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+20.0,男,その他,塗装,茨城県,大分市,"SUT ZAI CO.,LTD",ヤンゴン学校,健康生活事業協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+30.0,女,その他,介護,鹿児島県,鹿児島市,"SUT ZAI CO.,LTD",ヤンゴン学校,れいめい事業協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,仙台市,"SUT ZAI CO.,LTD",ヤンゴン学校,宮城県農水産サービス振興協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,仙台市,"SUT ZAI CO.,LTD",ヤンゴン学校,宮城県農水産サービス振興協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+23.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,仙台市,"SUT ZAI CO.,LTD",ヤンゴン学校,宮城県農水産サービス振興協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+20.0,男,建設関係,建築板金,東京都,西東京市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,フォーグッド協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+21.0,女,機械・金属関係,電子機器組立て,福島県,福島市,"TOP COMET CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+20.0,男,食品製造関係,そう菜製造業,山梨県,甲府市,"TOP COMET CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+20.0,男,食品製造関係,そう菜製造業,山梨県,甲府市,"TOP COMET CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,女,食品製造関係,加熱性水産加工食品製造業,宮城県,石巻市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+27.0,女,食品製造関係,加熱性水産加工食品製造業,宮城県,石巻市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,女,食品製造関係,加熱性水産加工食品製造業,宮城県,石巻市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+20.0,女,食品製造関係,非加熱性水産加工食品製造業,宮城県,石巻市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+22.0,男,建設関係,建築板金,千葉県,松戸市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,フォーグッド協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+25.0,女,繊維・衣服関係,婦人子供服製造,宮城県,気仙沼市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,三陸アシスト協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+28.0,女,その他,ビルクリーニング,山形県,米沢市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,一般社団法人日中科学技術文化センター,MAY KINN SAN COMPANY LIMITED,1,0
+21.0,男,建設関係,建設機械施工,福岡県,大牟田市,"MYANMAR UNITED SK CO.,LTD",KP日本語学校,アシスト国際事業協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,男,その他,紙器・段ボール箱製造,福岡県,田川市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,JOP協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+27.0,男,建設関係,防水施工,東京都,江東区,"MYANMAR UNITED SK CO.,LTD",KP日本語学校,フォーグッド協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+21.0,男,建設関係,左官,京都府,京都市,"MYANMAR UNITED SK CO.,LTD",KP日本語学校,フォーグッド協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+24.0,男,機械・金属関係,鉄工,大阪府,大阪市,"MYANMAR UNITED SK CO.,LTD",KP日本語学校,フォーグッド協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+25.0,男,その他,塗装,埼玉県,川越市,"MYANMAR UNITED SK CO.,LTD",ネピドー学校,フォーグッド協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+26.0,女,社内検定型,空港グランドハンドリング,東京都,大田区,"MYANMAR UNITED SK CO.,LTD",KP日本語学校,西日本海外業務支援協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+25.0,女,社内検定型,空港グランドハンドリング,東京都,大田区,"MYANMAR UNITED SK CO.,LTD",KP日本語学校,西日本海外業務支援協同組合,MAY KINN SAN COMPANY LIMITED,1,0
+25.0,男,農業・林業関係,耕種農業,三重県,津市,"MYANMAR UNITED SK CO.,LTD",ヤンゴン学校,三陸アシスト協同組合,MAY KINN SAN COMPANY LIMITED,1,0
