@@ -57,5 +57,5 @@ for col in summary_cols:
     if col in base.columns:
         print(f"\n共通FNの{col}分布")
         vc = base[col].fillna("(欠損)").value_counts(dropna=False)
-        print(vc)  # 显示所有行
+        print(vc)
         vc.to_csv(out_dir / f"CommonFN_counts_{col}.csv", header=["count"], encoding="utf-8-sig")

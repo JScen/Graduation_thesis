@@ -5,7 +5,6 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
-# ===== 字体（仅用于 PNG）=====
 plt.rcParams["font.family"] = "Hiragino Sans"
 plt.rcParams["axes.unicode_minus"] = False
 
@@ -47,5 +46,3 @@ plot_tree(
 
 plt.savefig("decision_tree.png", dpi=300, bbox_inches="tight")
 plt.close()
-
-print("✅ decision_tree.png を保存しました（LaTeXに貼ってください）")
